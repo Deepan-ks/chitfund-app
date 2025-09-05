@@ -6,6 +6,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/backend/chitfundapp/pom.xml" />
+        <option value="$PROJECT_DIR$/backend/chitfundmanager/pom.xml" />
       </list>
     </option>
   </component>

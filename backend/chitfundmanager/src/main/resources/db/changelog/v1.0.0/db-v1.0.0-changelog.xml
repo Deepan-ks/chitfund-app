@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.31.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1757167233951-1" author="Deepan">
+        <createTable tableName="auth_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_auth_user"/>
+            </column>
+            <column name="mobile_number" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1757167233951-2" author="Deepan">
+        <createTable tableName="chit_group">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_chit_group"/>
+            </column>
+            <column name="template_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="manager_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(150)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duration_months" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="monthly_due" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1757167233951-3" author="Deepan">
+        <createTable tableName="chit_group_member">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_chit_group_member"/>
+            </column>
+            <column name="chit_group_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="member_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="has_taken_chit" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1757167233951-4" author="Deepan">
+        <createTable tableName="chit_receivable">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_chit_receivable"/>
+            </column>
+            <column name="chit_group_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="month_number" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="receivable_amount" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_company_share" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1757167233951-5" author="Deepan">
+        <createTable tableName="chit_template">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_chit_template"/>
+            </column>
+            <column name="fund_value" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duration_months" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="monthly_due" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1757167233951-6" author="Deepan">
+        <createTable tableName="chit_template_withdrawal">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_chit_template_withdrawal"/>
+            </column>
+            <column name="template_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="month_number" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="withdrawal_amount" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1757167233951-7" author="Deepan">
+        <createTable tableName="contribution">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_contribution"/>
+            </column>
+            <column name="chit_group_member_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="month_number" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount_paid" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1757167233951-8" author="Deepan">
+        <createTable tableName="manager">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_manager"/>
+            </column>
+            <column name="auth_user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(100)"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1757167233951-9" author="Deepan">
+        <createTable tableName="member">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_member"/>
+            </column>
+            <column name="auth_user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="manager_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gender" type="VARCHAR(10)"/>
+            <column name="occupation" type="VARCHAR(50)"/>
+            <column name="address" type="VARCHAR(255)"/>
+            <column name="mobile_number" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1757167233951-10" author="Deepan">
+        <addUniqueConstraint columnNames="mobile_number" constraintName="uc_auth_user_mobile_number"
+                             tableName="auth_user"/>
+    </changeSet>
+    <changeSet id="1757167233951-11" author="Deepan">
+        <addUniqueConstraint columnNames="auth_user_id" constraintName="uc_manager_auth_user" tableName="manager"/>
+    </changeSet>
+    <changeSet id="1757167233951-12" author="Deepan">
+        <addUniqueConstraint columnNames="auth_user_id" constraintName="uc_member_auth_user" tableName="member"/>
+    </changeSet>
+    <changeSet id="1757167233951-13" author="Deepan">
+        <addForeignKeyConstraint baseColumnNames="chit_group_id" baseTableName="chit_group_member"
+                                 constraintName="FK_CHIT_GROUP_MEMBER_ON_CHIT_GROUP" referencedColumnNames="id"
+                                 referencedTableName="chit_group"/>
+    </changeSet>
+    <changeSet id="1757167233951-14" author="Deepan">
+        <addForeignKeyConstraint baseColumnNames="member_id" baseTableName="chit_group_member"
+                                 constraintName="FK_CHIT_GROUP_MEMBER_ON_MEMBER" referencedColumnNames="id"
+                                 referencedTableName="member"/>
+    </changeSet>
+    <changeSet id="1757167233951-15" author="Deepan">
+        <addForeignKeyConstraint baseColumnNames="manager_id" baseTableName="chit_group"
+                                 constraintName="FK_CHIT_GROUP_ON_MANAGER" referencedColumnNames="id"
+                                 referencedTableName="manager"/>
+    </changeSet>
+    <changeSet id="1757167233951-16" author="Deepan">
+        <addForeignKeyConstraint baseColumnNames="template_id" baseTableName="chit_group"
+                                 constraintName="FK_CHIT_GROUP_ON_TEMPLATE" referencedColumnNames="id"
+                                 referencedTableName="chit_template"/>
+    </changeSet>
+    <changeSet id="1757167233951-17" author="Deepan">
+        <addForeignKeyConstraint baseColumnNames="chit_group_id" baseTableName="chit_receivable"
+                                 constraintName="FK_CHIT_RECEIVABLE_ON_CHIT_GROUP" referencedColumnNames="id"
+                                 referencedTableName="chit_group"/>
+    </changeSet>
+    <changeSet id="1757167233951-18" author="Deepan">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="chit_template"
+                                 constraintName="FK_CHIT_TEMPLATE_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="manager"/>
+    </changeSet>
+    <changeSet id="1757167233951-19" author="Deepan">
+        <addForeignKeyConstraint baseColumnNames="template_id" baseTableName="chit_template_withdrawal"
+                                 constraintName="FK_CHIT_TEMPLATE_WITHDRAWAL_ON_TEMPLATE" referencedColumnNames="id"
+                                 referencedTableName="chit_template"/>
+    </changeSet>
+    <changeSet id="1757167233951-20" author="Deepan">
+        <addForeignKeyConstraint baseColumnNames="chit_group_member_id" baseTableName="contribution"
+                                 constraintName="FK_CONTRIBUTION_ON_CHIT_GROUP_MEMBER" referencedColumnNames="id"
+                                 referencedTableName="chit_group_member"/>
+    </changeSet>
+    <changeSet id="1757167233951-21" author="Deepan">
+        <addForeignKeyConstraint baseColumnNames="auth_user_id" baseTableName="manager"
+                                 constraintName="FK_MANAGER_ON_AUTH_USER" referencedColumnNames="id"
+                                 referencedTableName="auth_user"/>
+    </changeSet>
+    <changeSet id="1757167233951-22" author="Deepan">
+        <addForeignKeyConstraint baseColumnNames="auth_user_id" baseTableName="member"
+                                 constraintName="FK_MEMBER_ON_AUTH_USER" referencedColumnNames="id"
+                                 referencedTableName="auth_user"/>
+    </changeSet>
+    <changeSet id="1757167233951-23" author="Deepan">
+        <addForeignKeyConstraint baseColumnNames="manager_id" baseTableName="member"
+                                 constraintName="FK_MEMBER_ON_MANAGER" referencedColumnNames="id"
+                                 referencedTableName="manager"/>
+    </changeSet>
+
+</databaseChangeLog>
